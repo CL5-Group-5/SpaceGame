@@ -1,0 +1,9 @@
+C:\Users\imodc\OneDrive\Documents\GitHub\SpaceGame\SpaceGameCode\SpaceGame\bin\Debug\SpaceGame.exe.config
+C:\Users\imodc\OneDrive\Documents\GitHub\SpaceGame\SpaceGameCode\SpaceGame\bin\Debug\SpaceGame.exe
+C:\Users\imodc\OneDrive\Documents\GitHub\SpaceGame\SpaceGameCode\SpaceGame\bin\Debug\SpaceGame.pdb
+C:\Users\imodc\OneDrive\Documents\GitHub\SpaceGame\SpaceGameCode\SpaceGame\bin\Debug\SpaceGameFunctions.dll
+C:\Users\imodc\OneDrive\Documents\GitHub\SpaceGame\SpaceGameCode\SpaceGame\bin\Debug\SpaceGameFunctions.pdb
+C:\Users\imodc\OneDrive\Documents\GitHub\SpaceGame\SpaceGameCode\SpaceGame\obj\Debug\SpaceGame.csprojAssemblyReference.cache
+C:\Users\imodc\OneDrive\Documents\GitHub\SpaceGame\SpaceGameCode\SpaceGame\obj\Debug\SpaceGame.csproj.CopyComplete
+C:\Users\imodc\OneDrive\Documents\GitHub\SpaceGame\SpaceGameCode\SpaceGame\obj\Debug\SpaceGame.exe
+C:\Users\imodc\OneDrive\Documents\GitHub\SpaceGame\SpaceGameCode\SpaceGame\obj\Debug\SpaceGame.pdb
