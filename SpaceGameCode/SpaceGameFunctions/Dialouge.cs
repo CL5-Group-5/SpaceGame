@@ -64,6 +64,7 @@ namespace SpaceGameFunctions
                 if (check.ToLower() == "yes")
                 {
                     Console.WriteLine($"Your ship has been named {shipName}!\n");
+                    Console.ReadKey();
                     break;
                 }
                 else if (check.ToLower() == "no")
@@ -85,62 +86,114 @@ namespace SpaceGameFunctions
         public void beginnerShip()
         {
             Console.Write("Its time to choose your ship for your adventure!\n");
-            Console.WriteLine("1. Know for its fuel tank and lack of storage space, this ship comes from the Decanter" +
-            "District on your home planet. It was used to travel far distances to trade immaculate jewels to other planets."
-            + "If you choose this ship you will be able to travel the galaxy and have to worry about stopping as " +
-            "much for fuel but the drawback is that can not hold that much cargo.\nFuel Space: 7500 Gallons Storage Space: 000\n");
-
-            Console.Write("1. Know for its fuel tank and lack of storage space, this ship comes from the Decanter" +
-            "District on your home planet. It was used to travel far distances to trade immaculate jewels to other planets."
-            + "If you choose this ship you will be able to travel the galaxy and have to worry about stopping as " +
-            "much for fuel but thee drawback is that can not hold that much cargo.\nFuel Space: 7500 Gallons Storage Space: 000\n");
+            Console.WriteLine("Ship 1: Known for its fuel tank and lack of storage space, this ship comes from the Decanter" +
+            " District from your home\nplanet. It was used to travel far distances to trade immaculate jewels to other planets."
+            + "If you choose this ship you\nwill be able to traverse far into the galaxy and not have to worry about fuel " +
+            "but the drawback is that cannot\nhold that much cargo.\nFuel Space: 7500 Fuel / Storage Space: 000\n");
+            Console.WriteLine("Ship 2: This ship comes from the Equilibrium District of your home planet. It was used to help the planet's" +
+             " farmers \ntravel to and from markets selling goods to support their families. If you choose this ship, you will " +
+             "have an equal\nstorage space-to-fuel ratio, so you can travel a fair amount of distance and hold a fair amount of goods."
+             + "\nFuel Space: 6000 Fuel / Storage Space: 000\n");
+            Console.WriteLine("Ship 3: This ship comes from what was once the wealthiest district, Diamondia, it was " +
+            "used to transport weatlthy\nfamilies to and from the parties they would attend. If you choose this ship, you will have less"
+            + " fuel but a luxurious\namount of storage space to carry all of your space products.\nFuel Space: 5000 Fuel / Storage Space:00\n");
         }
-
-
     }
 
 
 
-     public class SpaceShips
-     {
+    public class SpaceShips
+    {
         public int storage;
         public int fuel;
-        public SpaceShips(int x)
+
+        public int chooseFirstShip()
         {
-            if (x == 1)
+            string check;
+            int caseSwitch;
+            check = Console.ReadLine();
+            while (Int32.TryParse(check, out caseSwitch) == false || Int32.Parse(check) <= 0 || Int32.Parse(check) >=4)
             {
-                storage = 0;
-                fuel = 7500;
+                Console.WriteLine("You have not entered a value to choose a Spaceship! Please try again");
+                check = Console.ReadLine();
             }
-            else if (x == 2)
+            switch (caseSwitch)
             {
-                storage = 0;
-                fuel = 6000;
+
+                case 1:
+                    Console.Write($"Are you sure you want to use Ship 1?\nEnter Yes or No: ");
+                    check = Console.ReadLine();
+                    while (check != " ")
+                    {
+                        if (check.ToLower() == "yes")
+                        {
+                            Console.WriteLine($"Let us begin your Space Salvation Adventure!\n");
+                            break;
+                        }
+                        else if (check.ToLower() == "no")
+                        {
+                            Console.Write("Okay, please enter your correct name: ");
+                            check = Console.ReadLine();
+                            Console.Write($"Are you sure you want to keep this name?: \nEnter Yes or No: ");
+                            check = Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.Write("You have not entered yes or no, please try again: ");
+                            check = Console.ReadLine();
+                        }
+                    }
+                    break;
+                case 2:
+                    Console.Write($"Are you sure you want to use Ship 2?\nEnter Yes or No: ");
+                    check = Console.ReadLine();
+                    while (check != " ")
+                    {
+                        if (check.ToLower() == "yes")
+                        {
+                            Console.WriteLine($"Let us begin your Space Salvation Adventure!\n");
+                            break;
+                        }
+                        else if (check.ToLower() == "no")
+                        {
+                            Console.Write("Okay, please enter your correct name: ");
+                            check = Console.ReadLine();
+                            Console.Write($"Are you sure you want to keep this name?: \nEnter Yes or No: ");
+                            check = Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.Write("You have not entered yes or no, please try again: ");
+                            check = Console.ReadLine();
+                        }
+                    }
+                    break;
+                case 3:
+                    Console.Write($"Are you sure you want to use Ship 3?\nEnter Yes or No: ");
+                    check = Console.ReadLine();
+                    while (check != " ")
+                    {
+                        if (check.ToLower() == "yes")
+                        {
+                            Console.WriteLine($"Let us begin your Space Salvation Adventure!\n");
+                            break;
+                        }
+                        else if (check.ToLower() == "no")
+                        {
+                            Console.Write("Okay, please enter your correct name: ");
+                            check = Console.ReadLine();
+                            Console.Write($"Are you sure you want to keep this name?: \nEnter Yes or No: ");
+                            check = Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.Write("You have not entered yes or no, please try again: ");
+                            check = Console.ReadLine();
+                        }
+                    }
+                    break;
             }
-            else if (x == 3)
-            {
-                storage = 0;
-                fuel = 5000;
-            }
-            else if (x == 4)
-            {
-                storage = 0;
-                fuel = 7500;
-            }
-            else if (x == 5)
-            {
-                storage = 0;
-                fuel = 7500;
-            }
-            else if (x == 6)
-            {
-                storage = 0;
-                fuel = 7500;
-            }
+            return caseSwitch;
         }
-
-
-
-
-     }
+    }
 }
