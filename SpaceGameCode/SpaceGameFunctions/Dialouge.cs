@@ -194,6 +194,92 @@ namespace SpaceGameFunctions
                     break;
             }
             return caseSwitch;
+            
+        }  
+        class Wallet
+            
+    {
+            int balance = 0;     
+            public int deposit()
+            {
+                int NewBalance;
+                int deposit;
+                Console.WriteLine("Please enter your amount to deposit");
+                deposit = Int32.Parse(Console.ReadLine());              
+                NewBalance = balance + deposit;
+                return NewBalance;
+            }
+            public int withdraw()
+            {
+               
+                    int NewBalance;
+                    int withdraw;
+                    Console.WriteLine("Please enter your amount to withdraw");
+                    withdraw = Int32.Parse(Console.ReadLine());               
+                    NewBalance = balance - withdraw;
+                    return NewBalance;
+                                   
+            }
+           
+           
+
+        
+        static void Main(string[] args)
+        {
+            
+            int NewBalance;
+            string bal;
+            Wallet funds = new Wallet();
+
+            int balance = 0;
+            Console.WriteLine("Your current balance is {0}", balance);
+            Console.WriteLine("Press d to deposit, and w to withdraw or qto quit.");
+
+
+            bal = Console.ReadLine();
+
+
+            while(bal != "d,w")
+            {
+                if (bal == "d")
+                {
+                    NewBalance = funds.deposit();
+                    Console.WriteLine($"Your new balance is {NewBalance}");
+                }
+                else if (bal == "w")
+                {
+                    NewBalance = funds.withdraw();
+                    Console.WriteLine($"Your new balance is {NewBalance}");
+                }
+
+                else if (bal != "d, w,")
+                {
+                    Console.WriteLine("Your current balance is {0}", balance);
+                    Console.WriteLine("Press d to deposit, and w to withdraw.");
+                    
+                }
+               
+                Console.ReadLine();
+            }
+            if (bal == "d")
+            {
+                NewBalance = funds.deposit();
+                Console.WriteLine($"Your new balance is {NewBalance}");
+            }
+            else if (bal == "w")
+            {
+                NewBalance = funds.withdraw();
+                Console.WriteLine($"Your new balance is {NewBalance}");
+            }
+            
+            else if(bal != "d, w,")
+            {
+                Console.WriteLine("You did not enter a provided option. Try again.");
+            }
+         
+            
+            Console.ReadLine();
         }
+    
     }
 }
