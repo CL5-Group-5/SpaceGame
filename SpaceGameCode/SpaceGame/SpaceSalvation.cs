@@ -92,6 +92,37 @@ namespace SpaceGame
             dialogue.beginnerShip();
             Console.Write("Please enter the number of the ship that you want: ");
             firstShip.chooseFirstShip();
+            int fuel = firstShip.fuel;
+            int storage = firstShip.storage;
+            int money = 0;
+            int switchCase = 1;
+            Console.Clear();
+
+
+
+            Console.WriteLine("Welcome to Garthar, your home planet! Please use the number-oriented menu to begin your adventure!");
+            while(switchCase == 1)
+            {
+                Console.WriteLine($"Fuel: {fuel}\nStorage: {storage}\nMoney: {money}");
+                Garthar garthar = new Garthar();
+                garthar.planetMenu();
+                switchCase++;
+            switch (switchCase)
+                {
+
+
+
+
+
+                }
+
+
+
+
+
+
+            }
+
         }
     }
 }
