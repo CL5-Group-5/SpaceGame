@@ -219,30 +219,23 @@ namespace SpaceGameFunctions
 
         }
     }
+
     public class Wallet
     {
+        public double money;
 
-        int balance = 0;
-        public int deposit()
+        public double buyProducts(int numOfProduct, double costOfProduct)
         {
-            int NewBalance;
-            int deposit;
-            Console.WriteLine("Please enter your amount to deposit");
-            deposit = Int32.Parse(Console.ReadLine());
-            NewBalance = balance + deposit;
-            return NewBalance;
+            this.money -= (numOfProduct * costOfProduct);
+            return this.money;
         }
-        public int withdraw()
+
+        public double sellProducts(int numOfProduct, double buyPrice)
         {
-
-            int NewBalance;
-            int withdraw;
-            Console.WriteLine("Please enter your amount to withdraw");
-            withdraw = Int32.Parse(Console.ReadLine());
-            NewBalance = balance - withdraw;
-            return NewBalance;
-
+            this.money += (numOfProduct * buyPrice);
+            return this.money;
         }
+
     }
 
     public class Item
@@ -272,7 +265,7 @@ namespace SpaceGameFunctions
             item1.sellsFor = 20;
             item1.weight = 1;
 
-            Console.WriteLine($"1. Buy Products\n2. Sell Products\n3. Travel to Another Planet\n4. Refuel\n5. Buy Planet's Ship");
+            Console.WriteLine($"1. Buy Products\n2. Sell Products\n3. Travel to Another Planet\n4. Refuel\n");
             int x = Int32.Parse(Console.ReadLine());
             int amt = 0;
             string test;
@@ -292,7 +285,9 @@ namespace SpaceGameFunctions
                                 test = Console.ReadLine();
                             }
                             break;
+                           
                     }
+
                     break;
 
 

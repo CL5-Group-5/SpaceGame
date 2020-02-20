@@ -11,11 +11,6 @@ namespace SpaceGame
     {
         static void Main()
         {
-            Item item1 = new Item();
-            item1.name = "Wheat";
-            item1.price = 0;
-            item1.sellsFor = 20;
-            item1.weight = 1;
 
             Item item2 = new Item();
             item2.name = "Water";
