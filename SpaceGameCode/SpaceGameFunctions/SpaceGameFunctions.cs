@@ -215,25 +215,30 @@ namespace SpaceGameFunctions
                     storage = 1500;
                     break;
             }
-            return caseSwitch;
-
+            return caseSwitch; 
         }
     }
 
     public class Wallet
     {
-        public double money;
 
-        public double buyProducts(int numOfProduct, double costOfProduct)
+        public double buyProducts(double money, int numOfProduct, double costOfProduct)
         {
-            this.money -= (numOfProduct * costOfProduct);
-            return this.money;
+            if (money - numOfProduct * costOfProduct < 0)
+            {
+                Console.WriteLine("You do not have enough money to purchase that!");
+            }
+            else
+            {
+                money -= (numOfProduct * costOfProduct);
+            }
+            return money;
         }
 
-        public double sellProducts(int numOfProduct, double buyPrice)
+        public double sellProducts(double money, int numOfProduct, double buyPrice)
         {
-            this.money += (numOfProduct * buyPrice);
-            return this.money;
+            money += (numOfProduct * buyPrice);
+            return money;
         }
 
     }
@@ -242,12 +247,76 @@ namespace SpaceGameFunctions
     {
         public string name;
         public int price;
-        public double weight;
+        public int weight;
         public int sellsFor;
+        public int storage;
     }
 
     public class Planets
     {
+        public double money;
+        public int storage;
+        public int fuel;
+        public int maxStorage;
+        public int maxFuel;
+
+        public int increaseStorage(int storage, int numOfProducts, int weightOfProduct)
+        {
+            return storage += numOfProducts * weightOfProduct;
+
+        }
+
+        public int decreaseStorage(int storage, int numOfProducts, int weightOfProduct)
+        {
+            if (storage - numOfProducts * weightOfProduct < 0)
+            {
+                Console.WriteLine("You do not have enough storage for that purchase");
+            }
+            else
+            {
+                storage -= numOfProducts * weightOfProduct;
+            }
+            return storage;
+        }
+
+        public double buyProducts(double money, int numOfProduct, double costOfProduct, int weightOfProduct)
+        {
+            if (money - numOfProduct * costOfProduct < 0)
+            {
+                Console.WriteLine("You do not have enough money to purchase that!");
+            }
+            else if(this.storage - (weightOfProduct*numOfProduct) < 0)
+            {
+                Console.WriteLine("You have enough money, but not enough storage for this purchase!");
+            }
+            else
+            {
+                money -= (numOfProduct * costOfProduct);
+            }
+            return money;
+        }
+
+        public double sellProducts(double money, int numOfProduct, double buyPrice)
+        {
+            money += (numOfProduct * buyPrice);
+            return money;
+        }
+
+        public int refillFuel()
+        {
+            if (this.money > ((this.maxFuel - this.fuel) * 5))
+            {
+                this.money -= ((this.maxFuel - this.fuel) * 5);
+                this.fuel = this.maxFuel;
+                Console.WriteLine($"Your fuel is now {this.fuel}");
+                Console.WriteLine($"Your money is now {this.money}");
+            }
+            else
+            {
+                Console.WriteLine("You do not have enough money to refill your tank, sell some items and try again!");
+            }
+            return this.fuel;
+        }
         public virtual void planetMenu()
         {
             Console.WriteLine($"1. Buy Products\n2. Sell Products\n3. Travel to Another Planet\n4. Refuel\n5. Buy Planet's Ship");
@@ -257,44 +326,99 @@ namespace SpaceGameFunctions
 
     public class Garthar : Planets
     {
+        public Garthar(double money, int storage, int fuel, int maxStorage, int maxFuel)
+        {
+            this.money = money;
+            this.storage = storage;
+            this.fuel = fuel;
+            this.maxFuel = maxFuel;
+            this.maxStorage = maxStorage;
+        }
         public override void planetMenu()
         {
             Item item1 = new Item();
+            Wallet wallet = new Wallet();
             item1.name = "Wheat";
             item1.price = 0;
             item1.sellsFor = 20;
             item1.weight = 1;
-
-            Console.WriteLine($"1. Buy Products\n2. Sell Products\n3. Travel to Another Planet\n4. Refuel\n");
-            int x = Int32.Parse(Console.ReadLine());
-            int amt = 0;
-            string test;
-            switch(x)
+            int caseSwitch = 0;
+            do
             {
-                case 1:
-                    Console.WriteLine($"1. {item1.name}");
-                    switch (x)
-                    {
-                        case 1:
-                            Console.WriteLine($"The price of {item1.name} is ${item1.price}");
-                            Console.WriteLine("How many would you like to buy?");
+                Console.WriteLine($"Fuel: {this.fuel}\nStorage: {this.storage}\nMoney: {this.money}");
+                Console.WriteLine($"1. Buy Products\n2. Sell Products\n3. Travel to Another Planet\n4. Refuel\n");
+                string test = Console.ReadLine();
+                int x;
+                while(Int32.TryParse(test, out x) == false || x < 1 || x > 4)
+                {
+                    Console.WriteLine("Please enter a valid menu option");
+                    test = Console.ReadLine();
+                }
+                int amt = 0;
+                switch (x)
+                {
+                    case 1:
+                        Console.WriteLine($"1. {item1.name}");
+                        test = Console.ReadLine();
+                        int y;
+                        while (Int32.TryParse(test, out y) == false || y != 1)
+                        {
+                            Console.WriteLine("Please enter a valid menu option");
                             test = Console.ReadLine();
-                            while(!int.TryParse(test, out amt))
+                        }
+                        switch (y)
+                        {
+                            case 1:
+                                caseSwitch = 1;
+                                Console.WriteLine($"The price of {item1.name} is ${item1.price}");
+                                Console.WriteLine("How many would you like to buy?");
+                                test = Console.ReadLine();
+                                while (!int.TryParse(test, out amt))
+                                {
+                                    Console.WriteLine("Please enter a valid integer.");
+                                    test = Console.ReadLine();
+                                }
+                                this.money = buyProducts(this.money, amt, item1.price,item1.weight);
+                                Console.WriteLine($"Your money amount is ${this.money}");
+                                this.storage = decreaseStorage(this.storage, amt, item1.weight);
+                                Console.WriteLine($"Your storage amount is {this.storage}");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                        }
+                        break;
+                    case 2:
+                        caseSwitch = 2;
+                        break;
+                    case 3:
+                        caseSwitch = 3;
+                        break;
+                    case 4:
+                        caseSwitch = 4;
+                        Console.WriteLine($"Would you like to refill your fuel? The cost is going to be ${(this.maxFuel - this.fuel) * 5}\nEnter Yes or No");
+                        test = Console.ReadLine();
+                        while (test != " ")
+                        {
+                            if (test.ToLower() == "yes")
                             {
-                                Console.WriteLine("Please enter a valid integer.");
+                                this.fuel = refillFuel();
+                                break;
+                            }
+                            else if (test.ToLower() == "no")
+                            {
+                                Console.Write("Okay, returning to the planet menu!");
+                            }
+                            else
+                            {
+                                Console.Write("You have not entered yes or no, please try again: ");
                                 test = Console.ReadLine();
                             }
-                            break;
-                           
-                    }
-
-                    break;
+                        }
+                        break;
 
 
-
-            }
+                }
+            } while (caseSwitch > 0 && caseSwitch < 5 && caseSwitch != 3);
         }
     }
-
-
 }
