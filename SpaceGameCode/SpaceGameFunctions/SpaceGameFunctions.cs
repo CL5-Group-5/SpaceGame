@@ -148,9 +148,9 @@ namespace SpaceGameFunctions
                         }
                         else if (check.ToLower() == "no")
                         {
-                            Console.Write("Okay, please enter your correct name: ");
+                            Console.Write("Okay, please enter the correct ship you want: ");
                             check = Console.ReadLine();
-                            Console.Write($"Are you sure you want to keep this name?: \nEnter Yes or No: ");
+                            Console.Write($"Are you sure you want to use Ship {caseSwitch}?: \nEnter Yes or No: ");
                             check = Console.ReadLine();
                         }
                         else
@@ -174,9 +174,9 @@ namespace SpaceGameFunctions
                         }
                         else if (check.ToLower() == "no")
                         {
-                            Console.Write("Okay, please enter your correct name: ");
+                            Console.Write("Okay, please enter the correct ship you want: ");
                             check = Console.ReadLine();
-                            Console.Write($"Are you sure you want to keep this name?: \nEnter Yes or No: ");
+                            Console.Write($"Are you sure you want to use Ship {caseSwitch}?: \nEnter Yes or No: ");
                             check = Console.ReadLine();
                         }
                         else
@@ -200,9 +200,9 @@ namespace SpaceGameFunctions
                         }
                         else if (check.ToLower() == "no")
                         {
-                            Console.Write("Okay, please enter your correct name: ");
+                            Console.Write("Okay, please enter the correct ship you want: ");
                             check = Console.ReadLine();
-                            Console.Write($"Are you sure you want to keep this name?: \nEnter Yes or No: ");
+                            Console.Write($"Are you sure you want to use Ship {caseSwitch}?: \nEnter Yes or No: ");
                             check = Console.ReadLine();
                         }
                         else
@@ -238,7 +238,7 @@ namespace SpaceGameFunctions
         public int fuel;
         public int maxStorage;
         public int maxFuel;
-        public int[] inventory = { 0, 0, 0, 0, 0, 0 }; //This is how the invetory works: index 0 = wheat, 1=space beans, 2 = space goo, 3=alien chicken,4=space rocks, 5=titanium
+        public int[] inventory = { 0, 0, 0, 0, 0}; //This is how the invetory works: index 0 = wheat, 1=space beans, 2 = space goo, 3=alien chicken,4=space rocks
 
         public int increaseStorage(int storage, int numOfProducts, int weightOfProduct)
         {
@@ -293,9 +293,9 @@ namespace SpaceGameFunctions
 
         public int refillFuel()
         {
-            if (this.money > ((this.maxFuel - this.fuel) * 2))
+            if (this.money > ((this.maxFuel - this.fuel) * 1.25))
             {
-                this.money -= ((this.maxFuel - this.fuel) * 2);
+                this.money -= ((this.maxFuel - this.fuel) * 1.25);
                 this.fuel = this.maxFuel;
                 Console.WriteLine($"Your fuel is now {this.fuel}");
                 Console.WriteLine($"Your money is now {this.money}");
@@ -303,6 +303,7 @@ namespace SpaceGameFunctions
             else
             {
                 Console.WriteLine("You do not have enough money to refill your tank, sell some items and try again!");
+                Console.ReadKey();
             }
             return this.fuel;
         }
@@ -329,7 +330,7 @@ namespace SpaceGameFunctions
             Item item1 = new Item();
             item1.name = "Wheat";
             item1.price = 1;
-            item1.sellsFor = 10;
+            item1.sellsFor = 15;
             item1.weight = 1;
             item1.productType = 0;
             int caseSwitch = 0;
@@ -397,6 +398,7 @@ namespace SpaceGameFunctions
                         if (this.fuel - 3000 < 0)
                         {
                             Console.WriteLine("You do not have enough fuel to travel! Returning to the main menu");
+                            Console.ReadKey();
                             caseSwitch = 1;
                         }
                         else
@@ -438,7 +440,7 @@ namespace SpaceGameFunctions
                         }
                         else
                         {
-                            Console.WriteLine($"Would you like to refill your fuel? The cost is going to be ${(this.maxFuel - this.fuel) * 2}\nEnter Yes or No");
+                            Console.WriteLine($"Would you like to refill your fuel? The cost is going to be ${(this.maxFuel - this.fuel) * 1.25}\nEnter Yes or No");
                             test = Console.ReadLine();
                             while (test != " ")
                             {
@@ -495,7 +497,7 @@ namespace SpaceGameFunctions
             Item item1 = new Item();
             item1.name = "Wheat";
             item1.price = 1;
-            item1.sellsFor = 10;
+            item1.sellsFor = 15;
             item1.weight = 1;
             item1.productType = 0;
 
@@ -504,7 +506,7 @@ namespace SpaceGameFunctions
             item2.price = 3;
             item2.weight = 2;
             item2.productType = 1;
-            item2.sellsFor = 30;
+            item2.sellsFor = 35;
 
             int caseSwitch = 0;
             Console.WriteLine("Welcome to Eduthear, here you can buy Space Beans and sell Wheat! You can also travel to Solanium or back to Garthar!\n");
@@ -604,6 +606,7 @@ namespace SpaceGameFunctions
                             if(this.fuel < 3000)
                             {
                                 Console.WriteLine("You do not have enough fuel to travel that far! Returning to the main menu");
+                                Console.ReadKey();
                                 caseSwitch = 1;
                             }
                             else
@@ -639,6 +642,7 @@ namespace SpaceGameFunctions
                             if (this.fuel < 4000)
                             {
                                 Console.WriteLine("You do not have enough fuel to travel that far! Returning to the main menu");
+                                Console.ReadKey();
                                 caseSwitch = 1;
                             }
                             else
@@ -681,7 +685,7 @@ namespace SpaceGameFunctions
                         }
                         else
                         {
-                            Console.WriteLine($"Would you like to refill your fuel? The cost is going to be ${(this.maxFuel - this.fuel) * 2}\nEnter Yes or No");
+                            Console.WriteLine($"Would you like to refill your fuel? The cost is going to be ${(this.maxFuel - this.fuel) * 1.25}\nEnter Yes or No");
                             test = Console.ReadLine();
                             while (test != " ")
                             {
@@ -740,14 +744,14 @@ namespace SpaceGameFunctions
             item2.price = 3;
             item2.weight = 2;
             item2.productType = 1;
-            item2.sellsFor = 30;
+            item2.sellsFor = 35;
 
             Item item4 = new Item();
             item4.name = "Space Goo";
             item4.price = 5;
             item4.weight = 4;
-            item4.productType = 1;
-            item4.sellsFor = 60;
+            item4.productType = 2;
+            item4.sellsFor = 65;
 
             int caseSwitch = 0;
             Console.WriteLine("Welcome to Solanium, here you can buy Space Goo and sell Beans! You can also travel to Hochienus or back to Eduthear!\n");
@@ -847,6 +851,7 @@ namespace SpaceGameFunctions
                             if (this.fuel < 4000)
                             {
                                 Console.WriteLine("You do not have enough fuel to travel that far! Returning to the main menu");
+                                Console.ReadKey();
                                 caseSwitch = 1;
                             }
                             else
@@ -882,6 +887,7 @@ namespace SpaceGameFunctions
                             if (this.fuel < 8000)
                             {
                                 Console.WriteLine("You do not have enough fuel to travel that far! Try buying a new Spaceship");
+                                Console.ReadKey();
                                 caseSwitch = 1;
                             }
                             else
@@ -948,40 +954,52 @@ namespace SpaceGameFunctions
                         }
                     case 5:
                         caseSwitch = 5;
-                        if (this.money < 50000)
+                        if (this.maxFuel == 15000)
                         {
-                            Console.WriteLine("You do not have enough money to afford the Tier 2 ship!");
+                            Console.WriteLine("You already own the Tier 2 Spaceship, returning to the Planet Menu");
                             Console.ReadKey();
+                            Console.Clear();
+                            caseSwitch = 1;
                             break;
                         }
                         else
                         {
-                            Console.WriteLine("\nAre you sure you want to buy the Tier 2 Spaceship? It costs $50000");
-                            while (test != " ")
+                            if (this.money < 50000)
                             {
-                                if (test.ToLower() == "yes")
+                                Console.WriteLine("You do not have enough money to afford the Tier 2 ship!");
+                                Console.ReadKey();
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nAre you sure you want to buy the Tier 2 Spaceship? It costs $50000");
+                                test = Console.ReadLine();
+                                while (test != " ")
                                 {
-                                    this.maxFuel = 15000;
-                                    this.fuel = this.maxFuel;
-                                    this.money -= 50000;
-                                    this.maxStorage = 10000;
-                                    this.storage = this.maxStorage - this.storage;
-                                    Console.WriteLine($"Your max fuel is now {this.maxFuel} and your max storage is now {this.maxStorage}");
-                                    break;
-                                }
-                                else if (test.ToLower() == "no")
-                                {
-                                    Console.Write("Okay, returning to the planet menu!");
-                                    caseSwitch = 1;
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.Write("You have not entered yes or no, please try again: ");
-                                    test = Console.ReadLine();
+                                    if (test.ToLower() == "yes")
+                                    {
+                                        this.maxFuel = 15000;
+                                        this.fuel = this.maxFuel;
+                                        this.money -= 50000;
+                                        this.maxStorage = 10000;
+                                        this.storage = this.maxStorage - this.storage;
+                                        Console.WriteLine($"Your max fuel is now {this.maxFuel} and your max storage is now {this.maxStorage}");
+                                        caseSwitch = 1;
+                                        break;
+                                    }
+                                    else if (test.ToLower() == "no")
+                                    {
+                                        Console.Write("Okay, returning to the planet menu!");
+                                        caseSwitch = 1;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Console.Write("You have not entered yes or no, please try again: ");
+                                        test = Console.ReadLine();
+                                    }
                                 }
                             }
-
                         }
                         Console.ReadKey();
                         Console.Clear();
@@ -1018,15 +1036,15 @@ namespace SpaceGameFunctions
             item4.name = "Space Goo";
             item4.price = 5;
             item4.weight = 4;
-            item4.productType = 1;
-            item4.sellsFor = 60;
+            item4.productType = 2;
+            item4.sellsFor = 65;
 
             Item item5 = new Item();
             item5.name = "Alien Chicken";
             item5.price = 7;
             item5.weight = 2;
-            item5.productType = 1;
-            item5.sellsFor = 85;
+            item5.productType = 3;
+            item5.sellsFor = 90;
 
 
             int caseSwitch = 0;
@@ -1066,7 +1084,7 @@ namespace SpaceGameFunctions
                                     Console.WriteLine("Please enter a valid integer.");
                                     test = Console.ReadLine();
                                 }
-                                this.money = buyProducts(this.money, item4.productType, amt, item5.price, item5.weight);
+                                this.money = buyProducts(this.money, item5.productType, amt, item5.price, item5.weight);
                                 Console.WriteLine($"Your money amount is ${this.money}");
                                 this.storage = decreaseStorage(this.storage, amt, item5.weight);
                                 Console.WriteLine($"Your storage amount is {this.storage}");
@@ -1127,6 +1145,7 @@ namespace SpaceGameFunctions
                             if (this.fuel < 8000)
                             {
                                 Console.WriteLine("You do not have enough fuel to travel that far! Returning to the main menu");
+                                Console.ReadKey();
                                 caseSwitch = 1;
                             }
                             else
@@ -1162,6 +1181,7 @@ namespace SpaceGameFunctions
                             if (this.fuel < 10000)
                             {
                                 Console.WriteLine("You do not have enough fuel to travel that far! Returning to the main menu");
+                                Console.ReadKey();
                                 caseSwitch = 1;
                             }
                             else
@@ -1259,16 +1279,15 @@ namespace SpaceGameFunctions
             item5.name = "Alien Chicken";
             item5.price = 7;
             item5.weight = 2;
-            item5.productType = 1;
-            item5.sellsFor = 85;
+            item5.productType = 3;
+            item5.sellsFor = 95;
 
             Item item6 = new Item();
             item6.name = "Space Rocks";
             item6.price = 14;
             item6.weight = 8;
-            item6.productType = 1;
-            item6.sellsFor = 120;
-
+            item6.productType = 4;
+            item6.sellsFor = 150;
 
             int caseSwitch = 0;
             Console.WriteLine("Welcome to Nauter, here you can buy Space Rocks and sell Alien Chicken! You can also travel to Apocolypsis or back to Hochienus!\n");
@@ -1368,6 +1387,7 @@ namespace SpaceGameFunctions
                             if (this.fuel < 10000)
                             {
                                 Console.WriteLine("You do not have enough fuel to travel that far! Returning to the main menu");
+                                Console.ReadKey();
                                 caseSwitch = 1;
                             }
                             else
@@ -1403,6 +1423,7 @@ namespace SpaceGameFunctions
                             if (this.fuel < 14000)
                             {
                                 Console.WriteLine("You do not have enough fuel to travel that far! Returning to the main menu");
+                                Console.ReadKey();
                                 caseSwitch = 1;
                             }
                             else
@@ -1470,6 +1491,216 @@ namespace SpaceGameFunctions
 
                 }
             } while (caseSwitch > 0 && caseSwitch < 5 && caseSwitch != 3);
+        }
+        public void Deconstruct(out double money, out int storage, out int fuel, out int maxStorage, out int maxFuel, out int[] inventory, out int nextLocation)
+        {
+            money = this.money;
+            storage = this.storage;
+            fuel = this.fuel;
+            maxStorage = this.maxStorage;
+            maxFuel = this.maxFuel;
+            inventory = this.inventory;
+            nextLocation = this.nextLocation;
+        }
+    }
+
+    public class Apocolypsis : Planets
+    {
+        public Apocolypsis(double money, int storage, int fuel, int maxStorage, int maxFuel, int[] inventory)
+        {
+            this.money = money;
+            this.storage = storage;
+            this.fuel = fuel;
+            this.maxFuel = maxFuel;
+            this.maxStorage = maxStorage;
+            this.inventory = inventory;
+        }
+        public override void planetMenu()
+        {
+            Item item6 = new Item();
+            item6.name = "Space Rocks";
+            item6.price = 14;
+            item6.weight = 8;
+            item6.productType = 4;
+            item6.sellsFor = 150;
+
+            int caseSwitch = 0;
+            Console.WriteLine("Welcome to Apocolypsis, here you can sell your Space Rock and purchase the final ship to save your Species!");
+            do
+            {
+                Console.WriteLine($"Fuel: {this.fuel}\nStorage: {this.storage}\nMoney: {this.money}");
+                Console.WriteLine("1. Sell Products\n2. Travel to Another Planet\n3. Refuel\n4. Buy Final SpaceShip and SAVE YOUR SPECIES!");
+                string test = Console.ReadLine();
+                int x;
+                while (Int32.TryParse(test, out x) == false || x < 1 || x > 5)
+                {
+                    Console.WriteLine("Please enter a valid menu option");
+                    test = Console.ReadLine();
+                }
+                int amt = 0;
+                switch (x)
+                {
+                    case 1:
+                        Console.WriteLine($"1. {item6.name}");
+                        test = Console.ReadLine();
+                        int z;
+                        while (Int32.TryParse(test, out z) == false || z != 1)
+                        {
+                            Console.WriteLine("Please enter a valid menu option");
+                            test = Console.ReadLine();
+                        }
+                        switch (z)
+                        {
+                            case 1:
+                                caseSwitch = 1;
+                                Console.WriteLine($"The selling price of {item6.name} is ${item6.sellsFor}");
+                                Console.WriteLine("How many would you like to sell?");
+                                test = Console.ReadLine();
+                                while (!int.TryParse(test, out amt))
+                                {
+                                    Console.WriteLine("Please enter a valid integer.");
+                                    test = Console.ReadLine();
+                                }
+                                double testMoney = this.money;
+                                this.money = sellProducts(this.money, item6.productType, amt, item6.sellsFor);
+                                Console.WriteLine($"Your money amount is ${this.money}");
+                                if (testMoney < this.money)
+                                {
+                                    this.storage = increaseStorage(this.storage, amt, item6.weight);
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                                Console.WriteLine($"Your storage amount is {this.storage}");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                        }
+                        break;
+                    case 2:
+                        caseSwitch = 3;
+                        Console.WriteLine("1. Naeter");
+                        test = Console.ReadLine();
+                        while (test != "1")
+                        {
+                            Console.WriteLine("Please enter a valid menu option");
+                            test = Console.ReadLine();
+                        }
+                        if (test == "1")
+                        {
+                            if (this.fuel < 14000)
+                            {
+                                Console.WriteLine("You do not have enough fuel to travel that far! Returning to the main menu");
+                                Console.ReadKey();
+                                caseSwitch = 1;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Are you sure you want to travel back to Naeter? It will cost 14,000 fuel. You have {this.fuel}");
+                                test = Console.ReadLine();
+                                while (test != " ")
+                                {
+                                    if (test.ToLower() == "yes")
+                                    {
+                                        this.fuel -= 14000;
+                                        Console.WriteLine("Traveling.........");
+                                        this.nextLocation = 4;
+                                        break;
+                                    }
+                                    else if (test.ToLower() == "no")
+                                    {
+                                        Console.Write("Okay, returning to the planet menu!");
+                                        caseSwitch = 1;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Console.Write("You have not entered yes or no, please try again: ");
+                                        test = Console.ReadLine();
+                                    }
+                                }
+                            }
+
+                        }
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    case 3:
+                        caseSwitch = 4;
+                        if (this.fuel == this.maxFuel)
+                        {
+                            Console.WriteLine("Your tank is already full, returning you to the main menu");
+                            Console.ReadKey();
+                            Console.Clear();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Would you like to refill your fuel? The cost is going to be ${(this.maxFuel - this.fuel) * 2}\nEnter Yes or No");
+                            test = Console.ReadLine();
+                            while (test != " ")
+                            {
+                                if (test.ToLower() == "yes")
+                                {
+                                    this.fuel = refillFuel();
+                                    break;
+                                }
+                                else if (test.ToLower() == "no")
+                                {
+                                    Console.Write("Okay, returning to the planet menu!");
+                                }
+                                else
+                                {
+                                    Console.Write("You have not entered yes or no, please try again: ");
+                                    test = Console.ReadLine();
+                                }
+                            }
+                            Console.Clear();
+                            break;
+                        }
+                    case 4:
+                        caseSwitch = 5;
+                        if (this.money < 2500000)
+                        {
+                            Console.WriteLine("You do not have enough money to afford the Final Spaceship!");
+                            Console.ReadKey();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nAre you sure you want to buy the the final Spaceship? This will end the game. It costs $250,000");
+                            test = Console.ReadLine();
+                            while (test != " ")
+                            {
+                                if (test.ToLower() == "yes")
+                                {
+                                    this.maxFuel = 78111101;
+                                    this.fuel = this.maxFuel;
+                                    this.money -= 250000;
+                                    this.maxStorage = 78111101;
+                                    this.storage = this.maxStorage - this.storage;
+                                    break;
+                                }
+                                else if (test.ToLower() == "no")
+                                {
+                                    Console.Write("Okay, returning to the planet menu!");
+                                    caseSwitch = 1;
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.Write("You have not entered yes or no, please try again: ");
+                                    test = Console.ReadLine();
+                                }
+                            }
+
+                        }
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                }
+            } while (caseSwitch > 0 && caseSwitch < 5 && caseSwitch != 3 && caseSwitch != 5);
         }
         public void Deconstruct(out double money, out int storage, out int fuel, out int maxStorage, out int maxFuel, out int[] inventory, out int nextLocation)
         {

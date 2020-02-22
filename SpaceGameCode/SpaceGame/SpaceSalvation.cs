@@ -27,10 +27,10 @@ namespace SpaceGame
             int maxFuel = firstShip.fuel;
             int storage = firstShip.storage;
             int maxStorage = firstShip.storage;
-            double money = 10000;
+            double money = 15000;
             int gameMaster = 0;
             int nextLocation;
-            int[] inventory = { 0, 0, 0, 0, 0, 0 }; //This is how the invetory works: index 0 = wheat, 1=space beans, 2 = space goo, 3=alien chicken,4=space rocks, 5=titanium
+            int[] inventory = { 0, 0, 0, 0, 0}; //This is how the invetory works: index 0 = wheat, 1=space beans, 2 = space goo, 3=alien chicken,4=space rocks
             Console.Clear();
 
             while (gameMaster != 1)
@@ -44,11 +44,13 @@ namespace SpaceGame
                 Solanium solanium = new Solanium(money, storage, fuel, maxStorage, maxFuel, inventory);
                 Hochienus hochienus = new Hochienus(money, storage, fuel, maxStorage, maxFuel, inventory);
                 Nauter nauter = new Nauter(money, storage, fuel, maxStorage, maxFuel, inventory);
+                Apocolypsis apocolypsis = new Apocolypsis(money, storage, fuel, maxStorage, maxFuel, inventory);
                 while (nextLocation >= 0 && nextLocation <= 5)
                 {
                     if (maxFuel == 78111101)
                     {
                         gameMaster++;
+                        nextLocation = 6;
                     }
                     else
                     {
@@ -104,12 +106,23 @@ namespace SpaceGame
                                 nauter.planetMenu();
                                 (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = nauter;
                                 break;
-
-
+                            case 5:
+                                apocolypsis.money = money;
+                                apocolypsis.storage = storage;
+                                apocolypsis.fuel = fuel;
+                                apocolypsis.maxStorage = maxStorage;
+                                apocolypsis.maxFuel = maxFuel;
+                                apocolypsis.inventory = inventory;
+                                apocolypsis.planetMenu();
+                                (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = apocolypsis;
+                                break;
                         }
                     }
                 }
             }
+
+
+            Console.WriteLine("Game Over"); //please inset an outro
 
         }
     }
