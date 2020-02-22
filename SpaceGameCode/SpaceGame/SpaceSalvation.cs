@@ -31,11 +31,9 @@ namespace SpaceGame
             int gameMaster = 0;
             int nextLocation;
             int[] inventory = { 0, 0, 0, 0, 0, 0 }; //This is how the invetory works: index 0 = wheat, 1=space beans, 2 = space goo, 3=alien chicken,4=space rocks, 5=titanium
-
             Console.Clear();
 
-
-            while(gameMaster != 1)
+            while (gameMaster != 1)
             {
                 Garthar garthar = new Garthar(money, storage, fuel, maxStorage, maxFuel, inventory);
                 garthar.planetMenu();
@@ -43,23 +41,74 @@ namespace SpaceGame
                 Eduthear eduthear = new Eduthear(money, storage, fuel, maxStorage, maxFuel, inventory);
                 eduthear.planetMenu();
                 (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = eduthear;
-                if (nextLocation == 0)
+                Solanium solanium = new Solanium(money, storage, fuel, maxStorage, maxFuel, inventory);
+                Hochienus hochienus = new Hochienus(money, storage, fuel, maxStorage, maxFuel, inventory);
+                Nauter nauter = new Nauter(money, storage, fuel, maxStorage, maxFuel, inventory);
+                while (nextLocation >= 0 && nextLocation <= 5)
                 {
-                    Garthar garthar2 = new Garthar(money, storage, fuel, maxStorage, maxFuel, inventory);
-                    (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = garthar2;
+                    if (maxFuel == 78111101)
+                    {
+                        gameMaster++;
+                    }
+                    else
+                    {
+                        switch (nextLocation)
+                        {
+                            case 0:
+                                garthar.money = money;
+                                garthar.storage = storage;
+                                garthar.fuel = fuel;
+                                garthar.maxStorage = maxStorage;
+                                garthar.maxFuel = maxFuel;
+                                garthar.inventory = inventory;
+                                garthar.planetMenu();
+                                (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = garthar;
+                                break;
+                            case 1:
+                                eduthear.money = money;
+                                eduthear.storage = storage;
+                                eduthear.fuel = fuel;
+                                eduthear.maxStorage = maxStorage;
+                                eduthear.maxFuel = maxFuel;
+                                eduthear.inventory = inventory;
+                                eduthear.planetMenu();
+                                (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = eduthear;
+                                break;
+                            case 2:
+                                solanium.money = money;
+                                solanium.storage = storage;
+                                solanium.fuel = fuel;
+                                solanium.maxStorage = maxStorage;
+                                solanium.maxFuel = maxFuel;
+                                solanium.inventory = inventory;
+                                solanium.planetMenu();
+                                (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = solanium;
+                                break;
+                            case 3:
+                                hochienus.money = money;
+                                hochienus.storage = storage;
+                                hochienus.fuel = fuel;
+                                hochienus.maxStorage = maxStorage;
+                                hochienus.maxFuel = maxFuel;
+                                hochienus.inventory = inventory;
+                                hochienus.planetMenu();
+                                (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = hochienus;
+                                break;
+                            case 4:
+                                nauter.money = money;
+                                nauter.storage = storage;
+                                nauter.fuel = fuel;
+                                nauter.maxStorage = maxStorage;
+                                nauter.maxFuel = maxFuel;
+                                nauter.inventory = inventory;
+                                nauter.planetMenu();
+                                (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = nauter;
+                                break;
+
+
+                        }
+                    }
                 }
-                else 
-                {
-                    
-                }
-
-
-
-
-
-
-
-                gameMaster++;
             }
 
         }
