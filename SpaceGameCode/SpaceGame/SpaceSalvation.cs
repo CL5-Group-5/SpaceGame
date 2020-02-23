@@ -23,6 +23,7 @@ namespace SpaceGame
             Console.Write("Please enter the number of the ship that you want: ");
             firstShip.chooseFirstShip();
 
+            //these variables are utilized to carry over values between Planets
             int fuel = firstShip.fuel;
             int maxFuel = firstShip.fuel;
             int storage = firstShip.storage;
@@ -33,8 +34,9 @@ namespace SpaceGame
             int[] inventory = { 0, 0, 0, 0, 0}; //This is how the invetory works: index 0 = wheat, 1=space beans, 2 = space goo, 3=alien chicken,4=space rocks
             Console.Clear();
 
-            while (gameMaster != 1)
+            while (gameMaster != 1) //gameMaster++ will end the game
             {
+                //first 2 objects iterate through their menu outside of the whle-switch 
                 Garthar garthar = new Garthar(money, storage, fuel, maxStorage, maxFuel, inventory);
                 garthar.planetMenu();
                 (money, storage, fuel, maxStorage, maxFuel, inventory, nextLocation) = garthar;
@@ -47,14 +49,14 @@ namespace SpaceGame
                 Apocolypsis apocolypsis = new Apocolypsis(money, storage, fuel, maxStorage, maxFuel, inventory);
                 while (nextLocation >= 0 && nextLocation <= 5)
                 {
-                    if (maxFuel == 78111101)
+                    if (maxFuel == 78111101) //Noe in computer alphabet
                     {
-                        gameMaster++;
-                        nextLocation = 6;
+                        gameMaster++; //ends game
+                        nextLocation = 6; //exists the while loop
                     }
                     else
                     {
-                        switch (nextLocation)
+                        switch (nextLocation) //nextLocation determinded by case 3 in every planets menu
                         {
                             case 0:
                                 garthar.money = money;
@@ -122,7 +124,8 @@ namespace SpaceGame
             }
 
 
-            Console.WriteLine("Game Over"); //please inset an outro
+            Console.WriteLine("After returning to Garthar with the final ship, you have boarded your entire species and have merely escaped the damnation of your planet!\n +" +
+                "You will forever be remebered as a hero by the Gartharians!");
 
         }
     }

@@ -8,6 +8,7 @@ namespace SpaceGameFunctions
 {
     public class Dialogue
     {
+        //this class is used for the majority of the dialouge
         public string intro()
         {
             string intro = "Welcome to Space Salvation! You are an alien from the species Garthar on your home-planet, " +
@@ -116,10 +117,9 @@ namespace SpaceGameFunctions
 
     }
 
-
-
     public class SpaceShips
     {
+        //class is used to assign the sotrage and fuel of the user's choice of ship
         public int storage;
         public int fuel;
 
@@ -219,7 +219,6 @@ namespace SpaceGameFunctions
         }
     }
 
-
     public class Item
     {
         public string name;
@@ -232,6 +231,7 @@ namespace SpaceGameFunctions
 
     public class Planets
     {
+        //this variables will be assigned via a deconstructor to the main method variables
         public int nextLocation;
         public double money;
         public int storage;
@@ -242,12 +242,14 @@ namespace SpaceGameFunctions
 
         public int increaseStorage(int storage, int numOfProducts, int weightOfProduct)
         {
+            //used when user sells items
             return storage += numOfProducts * weightOfProduct;
 
         }
 
         public int decreaseStorage(int storage, int numOfProducts, int weightOfProduct)
         {
+           //used when the user buys items
             if (storage - numOfProducts * weightOfProduct < 0)
             {
                 Console.WriteLine("You do not have enough storage for that purchase");
@@ -261,6 +263,7 @@ namespace SpaceGameFunctions
 
         public double buyProducts(double money, int productType, int numOfProduct, double costOfProduct, int weightOfProduct)
         {
+            //updates the users storage and money when buying items
             if (money - numOfProduct * costOfProduct < 0)
             {
                 Console.WriteLine("You do not have enough money to purchase that!");
@@ -272,7 +275,7 @@ namespace SpaceGameFunctions
             else
             {
                 money -= (numOfProduct * costOfProduct);
-                this.inventory[productType] = this.inventory[productType] + numOfProduct;
+                this.inventory[productType] = this.inventory[productType] + numOfProduct; //productType is used to modify the users invertory via an array
             }
             return money;
         }
@@ -293,6 +296,7 @@ namespace SpaceGameFunctions
 
         public int refillFuel()
         {
+            //every planet uses this method for the user to refill his fuel
             if (this.money > ((this.maxFuel - this.fuel) * 1.25))
             {
                 this.money -= ((this.maxFuel - this.fuel) * 1.25);
@@ -309,7 +313,19 @@ namespace SpaceGameFunctions
         }
         public virtual void planetMenu()
         {
+            //not really nesscessary to have, but I wanted to teach my teammates how virtual and override work
             Console.WriteLine($"1. Buy Products\n2. Sell Products\n3. Travel to Another Planet\n4. Refuel\n5. Buy Planet's Ship");
+        }
+        public void Deconstruct(out double money, out int storage, out int fuel, out int maxStorage, out int maxFuel, out int[] inventory, out int nextLocation)
+        {
+            //deconstructor pulls all the values at the end of a Planets playthrough and assigns them to outside variables, to be able to be utilized by another planet
+            money = this.money;
+            storage = this.storage;
+            fuel = this.fuel;
+            maxStorage = this.maxStorage;
+            maxFuel = this.maxFuel;
+            inventory = this.inventory;
+            nextLocation = this.nextLocation;
         }
 
     }
@@ -467,17 +483,6 @@ namespace SpaceGameFunctions
 
                 }
             } while (caseSwitch > 0 && caseSwitch < 5 && caseSwitch != 3);
-        }
-
-        public void Deconstruct(out double money, out int storage, out int fuel, out int maxStorage, out int maxFuel, out int[] inventory, out int nextLocation)
-        {
-            money = this.money;
-            storage = this.storage;
-            fuel = this.fuel;
-            maxStorage = this.maxStorage;
-            maxFuel = this.maxFuel;
-            inventory = this.inventory;
-            nextLocation = this.nextLocation;
         }
     }
 
@@ -711,18 +716,6 @@ namespace SpaceGameFunctions
 
                 }
             } while (caseSwitch > 0 && caseSwitch < 5 && caseSwitch != 3);
-        }
-        
-
-        public void Deconstruct(out double money, out int storage, out int fuel, out int maxStorage, out int maxFuel, out int[] inventory, out int nextLocation)
-        {
-            money = this.money;
-            storage = this.storage;
-            fuel = this.fuel;
-            maxStorage = this.maxStorage;
-            maxFuel = this.maxFuel;
-            inventory = this.inventory;
-            nextLocation = this.nextLocation;
         }
     }
 
@@ -1007,16 +1000,6 @@ namespace SpaceGameFunctions
                 }
             } while (caseSwitch > 0 && caseSwitch < 6 && caseSwitch != 3 && caseSwitch != 5);
         }
-        public void Deconstruct(out double money, out int storage, out int fuel, out int maxStorage, out int maxFuel, out int[] inventory, out int nextLocation)
-        {
-            money = this.money;
-            storage = this.storage;
-            fuel = this.fuel;
-            maxStorage = this.maxStorage;
-            maxFuel = this.maxFuel;
-            inventory = this.inventory;
-            nextLocation = this.nextLocation;
-        }
     }
 
     public class Hochienus : Planets
@@ -1250,16 +1233,6 @@ namespace SpaceGameFunctions
                 }
             } while (caseSwitch > 0 && caseSwitch < 5 && caseSwitch != 3);
         }
-        public void Deconstruct(out double money, out int storage, out int fuel, out int maxStorage, out int maxFuel, out int[] inventory, out int nextLocation)
-        {
-            money = this.money;
-            storage = this.storage;
-            fuel = this.fuel;
-            maxStorage = this.maxStorage;
-            maxFuel = this.maxFuel;
-            inventory = this.inventory;
-            nextLocation = this.nextLocation;
-        }
     }
 
     public class Nauter : Planets
@@ -1492,16 +1465,6 @@ namespace SpaceGameFunctions
                 }
             } while (caseSwitch > 0 && caseSwitch < 5 && caseSwitch != 3);
         }
-        public void Deconstruct(out double money, out int storage, out int fuel, out int maxStorage, out int maxFuel, out int[] inventory, out int nextLocation)
-        {
-            money = this.money;
-            storage = this.storage;
-            fuel = this.fuel;
-            maxStorage = this.maxStorage;
-            maxFuel = this.maxFuel;
-            inventory = this.inventory;
-            nextLocation = this.nextLocation;
-        }
     }
 
     public class Apocolypsis : Planets
@@ -1701,16 +1664,6 @@ namespace SpaceGameFunctions
                         break;
                 }
             } while (caseSwitch > 0 && caseSwitch < 5 && caseSwitch != 3 && caseSwitch != 5);
-        }
-        public void Deconstruct(out double money, out int storage, out int fuel, out int maxStorage, out int maxFuel, out int[] inventory, out int nextLocation)
-        {
-            money = this.money;
-            storage = this.storage;
-            fuel = this.fuel;
-            maxStorage = this.maxStorage;
-            maxFuel = this.maxFuel;
-            inventory = this.inventory;
-            nextLocation = this.nextLocation;
         }
     }
 
